@@ -1,5 +1,11 @@
 import React from 'react';
-import { Animated, Dimensions, StyleSheet } from 'react-native';
+import {
+  Animated,
+  Dimensions,
+  Platform,
+  StatusBar,
+  StyleSheet,
+} from 'react-native';
 import {
   Appbar,
   DefaultTheme,
@@ -59,6 +65,7 @@ class Solution05 extends React.Component {
 
     return (
       <PaperProvider theme={DefaultTheme}>
+        {Platform.OS === 'android' && <StatusBar translucent />}
         <Animated.View
           style={[
             styles.toolbar,
