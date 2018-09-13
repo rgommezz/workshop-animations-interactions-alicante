@@ -4,6 +4,8 @@ import { Header } from 'react-navigation';
 export const LANDSCAPE = 'landscape';
 export const PORTRAIT = 'portrait';
 
+export const STATUS_BAR_HEIGHT = Platform.OS === 'android' ? 24 : 20;
+
 export const getHeaderHeight = () => {
   let height;
   const orientation = getOrientation();

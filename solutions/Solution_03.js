@@ -7,7 +7,7 @@ import {
   Text,
   Alert,
 } from 'react-native';
-import { Constants } from 'expo';
+import { STATUS_BAR_HEIGHT } from '../utils/utils';
 
 const SQUARE_SIDE = 160;
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('screen');
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   },
   box: {
     position: 'absolute',
-    top: (SCREEN_HEIGHT - Constants.statusBarHeight - SQUARE_SIDE) / 2,
+    top: (SCREEN_HEIGHT - STATUS_BAR_HEIGHT - SQUARE_SIDE) / 2,
     left: (SCREEN_WIDTH - SQUARE_SIDE) / 2,
     height: SQUARE_SIDE,
     width: SQUARE_SIDE,

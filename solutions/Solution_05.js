@@ -8,16 +8,16 @@ import {
   Provider as PaperProvider,
   withTheme,
 } from 'react-native-paper';
-import { Constants } from 'expo';
 
 import LongParagraph from '../utils/LongParagraph';
+import { STATUS_BAR_HEIGHT } from '../utils/utils';
 
 const AnimatedText = Animated.createAnimatedComponent(Text);
 
 const imageRatio = 1000 / 600;
 const screenWidth = Dimensions.get('window').width;
 const imageHeight = screenWidth / imageRatio;
-const toolbarHeight = 56 + Constants.statusBarHeight;
+const toolbarHeight = 56 + STATUS_BAR_HEIGHT;
 
 class Solution05 extends React.Component {
   static navigationOptions = {
@@ -141,13 +141,13 @@ const styles = StyleSheet.create({
   backButton: {
     position: 'absolute',
     zIndex: 4,
-    top: Constants.statusBarHeight - 10 + 16 - 2,
+    top: STATUS_BAR_HEIGHT - 10 + 16 - 2,
     left: 4,
     elevation: 4,
   },
   title: {
     position: 'absolute',
-    top: imageHeight - toolbarHeight + Constants.statusBarHeight,
+    top: imageHeight - toolbarHeight + STATUS_BAR_HEIGHT,
     left: 16,
     paddingLeft: 56.5,
     zIndex: 3,

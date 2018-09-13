@@ -10,6 +10,7 @@ import * as solutions from './solutions';
 
 console.ignoredYellowBox = [
   'Warning: Failed prop type: Invalid prop `onHandlerStateChange`',
+  'Warning: isMounted',
 ];
 
 const getScreens = module => {
@@ -106,7 +107,7 @@ const MainNavigator = createBottomTabNavigator({
   Solutions: SolutionsStack,
 });
 
-export default () => <MainNavigator persistenceKey="persistence_key" />;
+export default () => <MainNavigator persistenceKey={null} />;
 
 const styles = StyleSheet.create({
   list: {

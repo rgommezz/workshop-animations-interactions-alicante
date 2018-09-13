@@ -3,28 +3,29 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "babel-preset-react-native-stage-0": "^1.0.1",
     "eslint": "^5.3.0",
     "eslint-config-callstack-io": "^1.1.2",
-    "jest-expo": "~27.0.0",
-    "react-native-scripts": "1.14.0",
+    "jest": "^23.6.0",
+    "jest-react-native": "^18.0.0",
     "react-test-renderer": "16.3.1"
   },
-  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
-    "start": "react-native-scripts start",
-    "eject": "react-native-scripts eject",
-    "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
+    "start": "react-native start",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
     "test": "jest"
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "react-native"
   },
   "dependencies": {
-    "expo": "^29.0.0",
     "react": "16.3.1",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-29.0.0.tar.gz",
+    "react-native": "0.55.4",
+    "react-native-gesture-handler": "^1.0.7",
     "react-native-paper": "2.0.1",
+    "react-native-reanimated": "^1.0.0-alpha.8",
+    "react-native-vector-icons": "^5.0.0",
     "react-navigation": "^2.13.0"
   },
   "eslintConfig": {

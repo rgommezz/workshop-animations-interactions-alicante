@@ -11,15 +11,14 @@ import {
   DefaultTheme,
   Provider as PaperProvider,
 } from 'react-native-paper';
-import { Constants } from 'expo';
 
 import LongParagraph from '../utils/LongParagraph';
-import { getHeaderHeight } from '../utils/utils';
+import { getHeaderHeight, STATUS_BAR_HEIGHT } from '../utils/utils';
 
 const imageRatio = 1000 / 600;
 const screenWidth = Dimensions.get('window').width;
 const imageHeight = screenWidth / imageRatio;
-// const toolbarHeight = 56 + Constants.statusBarHeight; // Use it for your solution
+// const toolbarHeight = 56 + STATUS_BAR_HEIGHT; // Use it for your solution
 
 export default class Exercise05 extends React.Component {
   static navigationOptions = {
@@ -78,7 +77,7 @@ const styles = StyleSheet.create({
     ...Platform.select({
       ios: {
         height: getHeaderHeight(),
-        paddingTop: Constants.statusBarHeight,
+        paddingTop: STATUS_BAR_HEIGHT,
       },
     }),
   },

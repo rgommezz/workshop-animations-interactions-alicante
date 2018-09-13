@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Dimensions, Text } from 'react-native';
-import { Constants } from 'expo';
+import { STATUS_BAR_HEIGHT } from '../utils/utils';
 
 const SQUARE_SIDE = 160;
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('screen');
@@ -19,10 +19,8 @@ export default class Exercise04 extends React.Component {
 
   componentDidMount() {
     // 3. Fire the animation when the component mounts
-
     // Listen to the animated value change and display the current value in a Text component
     // Hint: just use setState
-
     // When the animation finishes, show an alert with some random text
     // Hint: start() can receive a parameter
   }
@@ -48,7 +46,7 @@ const styles = StyleSheet.create({
   },
   box: {
     position: 'absolute',
-    top: (SCREEN_HEIGHT - Constants.statusBarHeight - SQUARE_SIDE) / 2,
+    top: (SCREEN_HEIGHT - STATUS_BAR_HEIGHT - SQUARE_SIDE) / 2,
     left: (SCREEN_WIDTH - SQUARE_SIDE) / 2,
     height: SQUARE_SIDE,
     width: SQUARE_SIDE,
