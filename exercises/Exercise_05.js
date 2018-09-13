@@ -1,52 +1,63 @@
 import React from 'react';
-import { Dimensions, FlatList, Image, StyleSheet, View } from 'react-native';
 import {
+  Dimensions,
+  Image,
+  StyleSheet,
+  ScrollView,
+  Platform,
+} from 'react-native';
+import {
+  Appbar,
   DefaultTheme,
-  FAB,
   Provider as PaperProvider,
 } from 'react-native-paper';
+import { Constants } from 'expo';
 
-const data = Array.from({ length: 24 }).map(
-  (_, i) => `https://unsplash.it/300/300/?random&__id=${i}`,
-);
+import LongParagraph from '../utils/LongParagraph';
+import { getHeaderHeight } from '../utils/utils';
 
-const photoSize = Dimensions.get('window').width / 2;
+const imageRatio = 1000 / 600;
+const screenWidth = Dimensions.get('window').width;
+const imageHeight = screenWidth / imageRatio;
+// const toolbarHeight = 56 + Constants.statusBarHeight; // Use it for your solution
 
 export default class Exercise05 extends React.Component {
-  // Init the instance fields you need for your animation
-
-  _keyExtractor = item => item;
-
-  _renderItem = ({ item }) => (
-    <View key={item} style={styles.item}>
-      <Image source={{ uri: item }} style={styles.photo} />
-    </View>
-  );
-
-  _animate = (/* visible */) => {
-    // Implement the translation animation function that will be reused
+  static navigationOptions = {
+    header: null,
   };
 
-  _handleScroll = () => {
-    // You need to use instance fields to check whether we are scrolling up or down
-    // It will also be good to have a variable to remember last movement, so we do not animate
-    // if it is not necessary
+  // Define your interpolations as part of instance variables
+
+  _goBack = () => {
+    this.props.navigation.goBack(null);
   };
 
+  // Several components will need to use Animated
+  // Hints: play with absolute position + ScrollView's padding top
   render() {
     return (
       <PaperProvider theme={DefaultTheme}>
-        <View style={styles.container}>
-          {/* FlatList should be Animated */}
-          <FlatList
-            data={data}
-            renderItem={this._renderItem}
-            keyExtractor={this._keyExtractor}
-            numColumns={2}
-            contentContainerStyle={styles.list}
-          />
-          <FAB icon="add" onPress={() => {}} style={styles.fab} dark />
-        </View>
+        {/* We need to extract Appbar.Header and change it to an Animated View */}
+        <Appbar.Header style={styles.toolbar}>
+          {/* We need to extract back action outside of Appbar.Header. We can wrap it in TouchableRipple
+          from react-native-paper */}
+          <Appbar.BackAction onPress={this._goBack} />
+          {/* We need to extract the content too, we can use the Text from react-native-paper
+          and wrap it with Animated */}
+          <Appbar.Content title="Exercise 05" />
+        </Appbar.Header>
+        {/* Image needs to be Animated */}
+        <Image
+          style={styles.image}
+          source={{ uri: 'https://picsum.photos/1000/600/?image=435' }}
+        />
+        {/* ScrollView needs to be Animated */}
+        <ScrollView
+          style={styles.container}
+          contentContainerStyle={styles.content}
+        >
+          <LongParagraph />
+        </ScrollView>
       </PaperProvider>
     );
   }
@@ -54,25 +65,21 @@ export default class Exercise05 extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
   },
-  item: {
-    height: photoSize,
-    width: photoSize,
-    padding: 4,
+  content: {
+    padding: 16,
   },
-  photo: {
-    flex: 1,
-    resizeMode: 'cover',
+  image: {
+    height: imageHeight,
+    width: screenWidth,
   },
-  list: {
-    paddingBottom: 56 + 16 + 16,
-  },
-  fab: {
-    position: 'absolute',
-    right: 0,
-    bottom: 0,
-    margin: 16,
+  toolbar: {
+    ...Platform.select({
+      ios: {
+        height: getHeaderHeight(),
+        paddingTop: Constants.statusBarHeight,
+      },
+    }),
   },
 });
